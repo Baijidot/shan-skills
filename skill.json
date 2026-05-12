@@ -1,0 +1,144 @@
+{
+  "name": "shan-wenyan",
+  "display_name": "善-文言文省词元",
+  "description": "将现代白话文转换为文言文风格输出，最大化节省token。三档压缩级别，完整保护技术内容。",
+  "version": "1.0.0",
+  "author": "白芨",
+  "github": "https://github.com/Baijidot",
+  "license": "MIT",
+  "category": "language-style",
+  "tags": ["文言文", "省token", "古典中文", "压缩", "开发效率", "系统提示词"],
+
+  "design_philosophy": {
+    "core": "言简意赅，一字千金",
+    "insight": "文言文天然凝练，信息密度远高于白话，是中文独有的token优化路径",
+    "principles": [
+      "每字必有用，无字可删",
+      "技术内容原样保护，一字不改",
+      "语义完整，准确性100%，仅改表达形式",
+      "三档压缩按需切换",
+      "危险操作必安全确认"
+    ]
+  },
+
+  "files": {
+    "primary": "SKILL.md",
+    "reference": "词汇速查.md",
+    "metadata": "skill.json",
+    "guide": "README.md"
+  },
+
+  "compression_levels": {
+    "lite": {
+      "name": "轻量",
+      "emoji": "🪶",
+      "compression_rate": "30-40%",
+      "description": "保留完整句子结构，去除填充词和客套话",
+      "best_for": ["日常对话", "新用户"]
+    },
+    "full": {
+      "name": "标准",
+      "emoji": "🪨",
+      "compression_rate": "50-65%",
+      "description": "碎片化表达，主语省略，短句为主",
+      "default": true,
+      "best_for": ["技术讨论", "代码解释"]
+    },
+    "ultra": {
+      "name": "极限",
+      "emoji": "🔥",
+      "compression_rate": "65-87%",
+      "description": "电报体，极致精简",
+      "best_for": ["快速确认", "老手交流"]
+    }
+  },
+
+  "protection_rules": {
+    "never_compress": [
+      "代码块", "行内代码", "错误消息和堆栈跟踪",
+      "文件路径", "行号引用", "URL和命令行",
+      "Git提交哈希、分支名", "版本号、配置值"
+    ],
+    "mixed_language": {
+      "rule": "保留英文技术术语，只压缩中文描述部分",
+      "preserve": ["代码标识符", "技术缩写", "框架/库名", "命令行工具", "配置项"]
+    }
+  },
+
+  "safety_valve": {
+    "description": "自动退出文言文模式，切换回完整白话",
+    "triggers": {
+      "dangerous_operations": ["数据库删除/清空", "不可逆文件操作", "生产环境变更", "支付/财务操作"],
+      "complex_sequences": "超过3步且顺序关键的流程",
+      "user_confusion": ["不明白", "说人话", "用白话", "正常说话"],
+      "first_interaction": "首条回复用白话确认模式"
+    }
+  },
+
+  "vocabulary_categories": {
+    "daily": { "count": 73, "file": "词汇速查.md#一" },
+    "logical": { "count": 12, "file": "词汇速查.md#二" },
+    "frontend": { "count": 30, "file": "词汇速查.md#三" },
+    "backend": { "count": 35, "file": "词汇速查.md#四" },
+    "devops": { "count": 25, "file": "词汇速查.md#五" },
+    "git": { "count": 15, "file": "词汇速查.md#六" },
+    "symbols": { "count": 25, "file": "词汇速查.md#七" }
+  },
+
+  "sentence_patterns": {
+    "count": 10,
+    "types": ["祈使句", "疑问句", "条件句", "因果句", "让步句", "判断句", "描述句", "并列句", "比较句", "确认句"]
+  },
+
+  "styles": {
+    "lunyu": { "name": "《论语》体", "features": ["单音节为主", "主语省略", "短句直述"], "best_for": ["代码审查", "快捷指令", "日常对话"] },
+    "shizhuan": { "name": "史传体", "features": ["四字格为主", "骈散结合", "语气正式"], "best_for": ["架构说明", "正式文档", "新人引导"] }
+  },
+
+  "sub_skills": {
+    "shan_commit": {
+      "command": "/善commit",
+      "alias": "/善c",
+      "description": "Conventional Commits 格式的文言 Git 提交信息",
+      "max_length": 50
+    },
+    "shan_review": {
+      "command": "/善review",
+      "alias": "/善r",
+      "description": "单行 PR 审查评论",
+      "format": "L{行号}: {🔴bug|🟡warn|🟢nit|💡sug} {问题}。{建议}。"
+    },
+    "shan_compress": {
+      "command": "/善compress",
+      "alias": "/善z",
+      "description": "将自然语言文件压缩为文言文",
+      "compression_rate": "45-55%"
+    }
+  },
+
+  "commands": {
+    "activate": "/善 [lite|full|ultra|off]",
+    "style": "/善 style [lunyu|shizhuan]",
+    "status_format": "[善:{level}]"
+  },
+
+  "conversion_pipeline": [
+    "识别内容类型 → 技术内容原样保护",
+    "检测安全场景 → 危险操作触发安全阀",
+    "选择压缩级别 → 用户指定或默认 Full",
+    "词汇替换 → 查词汇对照表",
+    "句式调整 → 套用句型转换规则",
+    "去除冗余 → 删填充词/重复/已知信息",
+    "质量检查 → 完整/准确/可读/无可删"
+  ],
+
+  "supported_platforms": [
+    "SOLO", "ChatGPT", "Kiro", "Cursor", "Windsurf",
+    "Cline", "Codex", "GitHub Copilot",
+    "其他所有支持自定义指令的AI工具"
+  ],
+
+  "changelog": {
+    "1.0.0": "正式发布：三档压缩、200+词汇、10种句式、安全阀、三子技能"
+  }
+}
